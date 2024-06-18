@@ -7,6 +7,57 @@
 */
 "use strict";
 
+var old_time = {}
+var intervalSetNewTime = '';
+
+const weatherDefaults = {
+    widgetPath: '/local/custom_ui/htc-weather/',
+    lang: 'en',
+    am_pm: false,
+    svrOffset: 0,
+    render: true,
+    renderClock: true,
+    renderDetails: true,
+    high_low_entity: false,
+    theme: {
+        name: 'default',
+        weather_icon_set: 'default'
+    }
+};
+weatherDefaults['imagesPath'] = weatherDefaults.widgetPath + 'themes/' + weatherDefaults.theme['name'] + '/'
+weatherDefaults['clockImagesPath'] = weatherDefaults.imagesPath + 'clock/'
+weatherDefaults['weatherImagesPath'] = weatherDefaults.imagesPath + 'weather/' + weatherDefaults.theme['weather_icon_set'] + '/'
+const htcVersion = "1.3.2";
+
+
+const weatherIconsDay = {
+    clear: "sunny",
+    "clear-night": "night",
+    cloudy: "cloudy",
+    fog: "fog",
+    hail: "hail",
+    lightning: "thunder",
+    "lightning-rainy": "thunder",
+    partlycloudy: "partlycloudy",
+    pouring: "pouring",
+    rainy: "pouring",
+    snowy: "snowy",
+    "snowy-rainy": "snowy-rainy",
+    sunny: "sunny",
+    windy: "cloudy",
+    "windy-variant": "cloudy-day-3",
+    exceptional: "na"
+};
+
+const weatherIconsNight = {
+    ...weatherIconsDay,
+    fog: "fog",
+    clear: "night",
+    sunny: "night",
+    partlycloudy: "cloudy-night-3",
+    "windy-variant": "cloudy-night-3"
+};
+
 /* global $, vis, systemDictionary */
 
 // add translations for edit mode
@@ -31,6 +82,7 @@ $.extend(
     }
 );
 
+
 // this code can be placed directly in htcweatherclock.html
 vis.binds["htcweatherclock"] = {
     version: "0.0.1",
@@ -41,6 +93,7 @@ vis.binds["htcweatherclock"] = {
         }
     },
     createWidget: function (widgetID, view, data, style) {
+        console.log("Bin mal drin");
         var $div = $('#' + widgetID);
         // if nothing found => wait
         if (!$div.length) {
@@ -49,15 +102,22 @@ vis.binds["htcweatherclock"] = {
             }, 100);
         }
 
-        var text = '';
-        text += 'OID: ' + data.oid + '</div><br>';
-        text += 'OID value: <span class="htcweatherclock-value">' + vis.states[data.oid + '.val'] + '</span><br>';
-        text += 'Color: <span style="color: ' + data.myColor + '">' + data.myColor + '</span><br>';
-        text += 'extraAttr: ' + data.extraAttr + '<br>';
-        text += 'Browser instance: ' + vis.instance + '<br>';
-        text += 'htmlText: <textarea readonly style="width:100%">' + (data.htmlText || '') + '</textarea><br>';
+        const htcclock_style = document.createElement('style');
+        htcclock_style.textContent = themes['default']['css'];
+        root.appendChild(htcclock_style);
+        var container_size = '470px';
+        const container = document.createElement('div');
+        container.id = 'htc-weather-card-container';
+        // container.onclick = this._handleClick(this._config.entity)
+        container.style = `height: ${container_size};`
+        
+        const htc_clock = document.createElement('div')
+        htc_clock.id = 'htc-clock'
+        htc_clock.classList.add(`htc-clock-0`)
+        container.appendChild(htc_clock)
 
-        $('#' + widgetID).html(text);
+        $(container).appendTo('#' + widgetID);
+
 
         // subscribe on updates of value
         function onChange(e, newVal, oldVal) {

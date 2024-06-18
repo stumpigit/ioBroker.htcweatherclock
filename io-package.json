@@ -50,7 +50,6 @@
         "keywords": [
             "HTC Clock weather data custom"
         ],
-        "license": "MIT",
         "licenseInformation": {
             "type": "free",
             "license": "MIT"
@@ -64,7 +63,7 @@
         "loglevel": "info",
         "tier": 3,
         "restartAdapters": [
-            "vis"
+            "vis-2"
         ],
         "onlyWWW": true,
         "noConfig": true,
