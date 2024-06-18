@@ -95,8 +95,7 @@ For later updates, the above procedure is not necessary. Just do the following:
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 0.1.0 (2024-06-18)
 * (Christoph Suter) initial release
 
 ## License

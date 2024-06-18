@@ -1,84 +1,97 @@
 {
-    "common": {
-        "name": "htcweatherclock",
-        "version": "0.0.1",
-        "news": {
-            "0.0.1": {
-                "en": "initial release",
-                "de": "Erstveröffentlichung",
-                "ru": "Начальная версия",
-                "pt": "lançamento inicial",
-                "nl": "Eerste uitgave",
-                "fr": "Première version",
-                "it": "Versione iniziale",
-                "es": "Versión inicial",
-                "pl": "Pierwsze wydanie",
-                "uk": "Початкова версія",
-                "zh-cn": "首次出版"
-            }
-        },
-        "title": "HTC Clock with weather data",
-        "titleLang": {
-            "en": "HTC Clock with weather data",
-            "de": "HTC-Uhr mit Wetterdaten",
-            "ru": "Часы HTC с данными о погоде",
-            "pt": "Relógio HTC com dados meteorológicos",
-            "nl": "HTC Klok met weergegevens",
-            "fr": "Horloge HTC avec données météorologiques",
-            "it": "HTC Orologio con dati meteo",
-            "es": "Reloj HTC con datos meteorológicos",
-            "pl": "Zegar HTC z danymi pogodowymi",
-            "uk": "Годинник HTC з даними про погоду",
-            "zh-cn": "具有天气数据的 HTC 时钟"
-        },
-        "desc": {
-            "en": "Shows the HTC Clock with custom weather data",
-            "de": "Zeigt die HTC-Uhr mit benutzerdefinierten Wetterdaten an",
-            "ru": "Показывает часы HTC с пользовательскими данными о погоде.",
-            "pt": "Mostra o HTC Clock com dados meteorológicos personalizados",
-            "nl": "Toont de HTC Klok met aangepaste weergegevens",
-            "fr": "Affiche l'horloge HTC avec des données météorologiques personnalisées",
-            "it": "Mostra l'orologio HTC con dati meteo personalizzati",
-            "es": "Muestra el Reloj HTC con datos meteorológicos personalizados",
-            "pl": "Pokazuje zegar HTC z niestandardowymi danymi pogodowymi",
-            "uk": "Показує годинник HTC із спеціальними даними про погоду",
-            "zh-cn": "显示带有自定义天气数据的 HTC 时钟"
-        },
-        "authors": [
-            "Christoph Suter <christoph@suter-burri.ch>"
-        ],
-        "keywords": [
-            "HTC Clock weather data custom"
-        ],
-        "licenseInformation": {
-            "type": "free",
-            "license": "MIT"
-        },
-        "platform": "Javascript/Node.js",
-        "main": "main.js",
-        "icon": "htcweatherclock.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/stumpisuter/ioBroker.htcweatherclock/main/admin/htcweatherclock.png",
-        "readme": "https://github.com/stumpisuter/ioBroker.htcweatherclock/blob/main/README.md",
-        "loglevel": "info",
-        "tier": 3,
-        "restartAdapters": [
-            "vis-2"
-        ],
-        "onlyWWW": true,
-        "noConfig": true,
-        "singleton": true,
-        "type": "visualization-widgets",
-        "mode": "once",
-        "dependencies": [
-            "vis"
-        ],
-        "globalDependencies": []
+  "common": {
+    "name": "htcweatherclock",
+    "version": "0.1.0",
+    "news": {
+      "0.1.0": {
+        "en": "(Christoph Suter) initial release",
+        "de": "(Christoph Suter) erste Veröffentlichung",
+        "ru": "(Christoph Suter)",
+        "pt": "(Christoph Suter) lançamento inicial",
+        "nl": "(Christoph Suter) eerste release",
+        "fr": "(Christoph Suter) libération initiale",
+        "it": "(Christoph Suter) rilascio iniziale",
+        "es": "(Christoph Suter) versión inicial",
+        "pl": "(Christoph Suter)",
+        "uk": "(Christoph Suter) початковий реліз",
+        "zh-cn": "(Christoph Suter) 初释"
+      },
+      "0.0.1": {
+        "en": "initial release",
+        "de": "Erstveröffentlichung",
+        "ru": "Начальная версия",
+        "pt": "lançamento inicial",
+        "nl": "Eerste uitgave",
+        "fr": "Première version",
+        "it": "Versione iniziale",
+        "es": "Versión inicial",
+        "pl": "Pierwsze wydanie",
+        "uk": "Початкова версія",
+        "zh-cn": "首次出版"
+      }
     },
-    "native": {
-        "option1": true,
-        "option2": "42"
+    "title": "HTC Clock with weather data",
+    "titleLang": {
+      "en": "HTC Clock with weather data",
+      "de": "HTC-Uhr mit Wetterdaten",
+      "ru": "Часы HTC с данными о погоде",
+      "pt": "Relógio HTC com dados meteorológicos",
+      "nl": "HTC Klok met weergegevens",
+      "fr": "Horloge HTC avec données météorologiques",
+      "it": "HTC Orologio con dati meteo",
+      "es": "Reloj HTC con datos meteorológicos",
+      "pl": "Zegar HTC z danymi pogodowymi",
+      "uk": "Годинник HTC з даними про погоду",
+      "zh-cn": "具有天气数据的 HTC 时钟"
     },
-    "objects": [],
-    "instanceObjects": []
+    "desc": {
+      "en": "Shows the HTC Clock with custom weather data",
+      "de": "Zeigt die HTC-Uhr mit benutzerdefinierten Wetterdaten an",
+      "ru": "Показывает часы HTC с пользовательскими данными о погоде.",
+      "pt": "Mostra o HTC Clock com dados meteorológicos personalizados",
+      "nl": "Toont de HTC Klok met aangepaste weergegevens",
+      "fr": "Affiche l'horloge HTC avec des données météorologiques personnalisées",
+      "it": "Mostra l'orologio HTC con dati meteo personalizzati",
+      "es": "Muestra el Reloj HTC con datos meteorológicos personalizados",
+      "pl": "Pokazuje zegar HTC z niestandardowymi danymi pogodowymi",
+      "uk": "Показує годинник HTC із спеціальними даними про погоду",
+      "zh-cn": "显示带有自定义天气数据的 HTC 时钟"
+    },
+    "authors": [
+      "Christoph Suter <christoph@suter-burri.ch>"
+    ],
+    "keywords": [
+      "HTC Clock weather data custom"
+    ],
+    "licenseInformation": {
+      "type": "free",
+      "license": "MIT"
+    },
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "icon": "htcweatherclock.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/stumpisuter/ioBroker.htcweatherclock/main/admin/htcweatherclock.png",
+    "readme": "https://github.com/stumpisuter/ioBroker.htcweatherclock/blob/main/README.md",
+    "loglevel": "info",
+    "tier": 3,
+    "restartAdapters": [
+      "vis-2"
+    ],
+    "onlyWWW": true,
+    "noConfig": true,
+    "singleton": true,
+    "type": "visualization-widgets",
+    "mode": "once",
+    "dependencies": [
+      "vis"
+    ],
+    "globalDependencies": []
+  },
+  "native": {
+    "option1": true,
+    "option2": "42"
+  },
+  "objects": [],
+  "instanceObjects": []
 }
