@@ -1,9 +1,10 @@
 /*
     ioBroker.vis htcweatherclock Widget-Set
 
-    version: "0.0.1"
+    version: "0.1.0"
 
     Copyright 2024 Christoph Suter christoph@suter-burri.ch
+    Based on https://github.com/iamBiB/lovelace-htc-flipclock-weather
 */
 "use strict";
 
@@ -12,81 +13,27 @@ var intervalSetNewTime = '';
 
 const weatherDefaults = {
     widgetPath: './widgets/htcweatherclock/',
-    lang: 'en',
+    lang: 'de',
     am_pm: false,
     svrOffset: 0,
     render: true,
     renderClock: true,
-    renderDetails: true,
+    renderDetails: false,
     high_low_entity: false,
     theme: {
         name: 'default',
-        weather_icon_set: 'default'
+        weather_icon_set: 'srfmeteo'
     }
 };
 weatherDefaults['imagesPath'] = weatherDefaults.widgetPath + 'themes/' + weatherDefaults.theme['name'] + '/'
 weatherDefaults['clockImagesPath'] = weatherDefaults.imagesPath + 'clock/'
 weatherDefaults['weatherImagesPath'] = weatherDefaults.imagesPath + 'weather/' + weatherDefaults.theme['weather_icon_set'] + '/'
-const htcVersion = "1.3.2";
-
-
-const weatherIconsDay = {
-    clear: "sunny",
-    "clear-night": "night",
-    cloudy: "cloudy",
-    fog: "fog",
-    hail: "hail",
-    lightning: "thunder",
-    "lightning-rainy": "thunder",
-    partlycloudy: "partlycloudy",
-    pouring: "pouring",
-    rainy: "pouring",
-    snowy: "snowy",
-    "snowy-rainy": "snowy-rainy",
-    sunny: "sunny",
-    windy: "cloudy",
-    "windy-variant": "cloudy-day-3",
-    exceptional: "na"
-};
-
-const weatherIconsNight = {
-    ...weatherIconsDay,
-    fog: "fog",
-    clear: "night",
-    sunny: "night",
-    partlycloudy: "cloudy-night-3",
-    "windy-variant": "cloudy-night-3"
-};
-
-/* global $, vis, systemDictionary */
-
-// add translations for edit mode
-$.extend(
-    true,
-    systemDictionary,
-    {
-        // Add your translations here, e.g.:
-        // "size": {
-        // 	"en": "Size",
-        // 	"de": "Größe",
-        // 	"ru": "Размер",
-        // 	"pt": "Tamanho",
-        // 	"nl": "Grootte",
-        // 	"fr": "Taille",
-        // 	"it": "Dimensione",
-        // 	"es": "Talla",
-        // 	"pl": "Rozmiar",
-        //  "uk": "Розмір"
-        // 	"zh-cn": "尺寸"
-        // }
-    }
-);
 
 
 // this code can be placed directly in htcweatherclock.html
 vis.binds["htcweatherclock"] = {
     _config : weatherDefaults,
-    version: "0.0.1",
+    version: "0.1.0",
     old_time: {},
     showVersion: function () {
         if (vis.binds["htcweatherclock"].version) {
@@ -204,17 +151,21 @@ vis.binds["htcweatherclock"] = {
         this.setNewTime($('#' + widgetID));
 
         this.updateTime($('#' + widgetID));
+        this.setNewWeather($('#htc-weather'), data);
         // subscribe on updates of value
+        
         function onChange(e, newVal, oldVal) {
-            $div.find('.template-value').html(newVal);
+            console.log(newVal);
+            vis.binds.htcweatherclock.setNewWeather($('#htc-weather'));
         }
-        if (data.oid) {
-            vis.states.bind(data.oid + '.val', onChange);
+        if (data.oid2) {
+            vis.states.bind(data.lastupdated + ".val", onChange);
             //remember bound state that vis can release if didnt needed
-            $div.data('bound', [data.oid + '.val']);
+            $div.data("bound", [data.lastupdated + ".val"]);
             //remember onchange handler to release bound states
-            $div.data('bindHandler', onChange);
+            $div.data("bindHandler", onChange);
         }
+       
     },
     updateTime: function(widgetID) {
         setTimeout(function () {
@@ -437,6 +388,45 @@ vis.binds["htcweatherclock"] = {
         }
         // save current time as old_time
         this.old_time = this.getNewTime();
+    },
+    setNewWeather: function (elem, data)
+    {
+        var curr_temp = `<p class="temp">15
+                       <span class="metric">
+                       °C</span></p>`;
+        var weatherIcon = this.getWeatherIcon(this._config, vis.states[data["oid-currentsymbol"] + ".val"],  data['api-type'])
+        $(elem).css('background','url('
+                 + weatherIcon 
+                 + ') 50% 0 no-repeat');
+        var weather = `<div id="local">
+                            <p class="city">${data.location}</p>
+                            ${vis.states[data["oid-currenttemp"] + ".val"]} °C
+                        </div>`;
+        weather += this.getHighLow(data);
+        
+        weather += '</p></div>';
+
+        $(elem).html(weather);
+    },
+    getWeatherIcon: function(config, condition, apiType) {
+        var matching = weathersymbolmatcher['srfmeteo'][apiType].filter(item => item.code === condition);
+        if (matching.length < 1) return `${config.weatherImagesPath}na.png`;
+
+
+        return `${config.weatherImagesPath}${matching[0].image}.png`;
+    },
+    getHighLow: function(data) {
+        var config = this._config;
+        var returnEntityHtml = '';
+        var high_low_state = '';
+        var today_date = `${regional[config.lang]['dayNames'][new Date().getDay()]}&nbsp;${new Date().getDate()}.&nbsp;${regional[config.lang]['monthNames'][new Date().getMonth()]}`;
+        var is_forecast = true;
+
+        returnEntityHtml += `<div id="temp"><p id="date">&nbsp${today_date}</p>
+                        ${vis.states[data["oid-currentmintemp"] + ".val"]} °C`;
+        returnEntityHtml += `&nbsp;/&nbsp;${vis.states[data["oid-currentmaxtemp"] + ".val"]} °C`;
+        
+        return returnEntityHtml;
     }
 };
 

@@ -1,4 +1,4 @@
-export const regional = {
+const regional = {
 	'ro': {
 		monthNames: ['Ian', 'Feb', 'Mar', 'Apr', 'Mai', 'Iun', 'Iul', 'Aug', 'Sept', 'Oct', 'Noi', 'Dec'],
 		dayNames: ['Dum', 'Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sam'],
@@ -67,3 +67,15 @@ export const regional = {
 	}
 };
 
+if (vis.editMode) {
+	$.extend(systemDictionary, {
+		"oid-currenttemp"      : {"en": "Current Temperature",         "de": "Aktuelle Temperatur",   "ru": "Скрыть секунды"},
+		"location"      : {"en": "Location",         "de": "Ort",   "ru": "Скрыть секунды"},
+		"group_CurrentWeather"      : {"en": "Current Weather",         "de": "Aktuelles Wetter",   "ru": "Скрыть секунды"},
+		"oid-lastupdated"      : {"en": "Last updated",         "de": "Letztes Wetterupdate",   "ru": "Скрыть секунды"},
+		"oid-currentmintemp"      : {"en": "Min temperature of day",         "de": "Tagestiefsttemperatur",   "ru": "Скрыть секунды"},
+		"oid-currentmaxtemp"      : {"en": "Max temperature of day",         "de": "Tageshöchsttemperatur",   "ru": "Скрыть секунды"},
+		"api-type"      : {"en": "Type of weather api",         "de": "Wetter-API Typ",   "ru": "Скрыть секунды"},
+		"oid-currentsymbol"      : {"en": "Symbol code of current weather",         "de": "Symbol Code des aktuellen Wetters",   "ru": "Скрыть секунды"},
+	});
+}
