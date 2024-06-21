@@ -1,6 +1,6 @@
 {
   "name": "iobroker.htcweatherclock",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Shows the HTC Clock with custom weather data",
   "author": {
     "name": "Christoph Suter",

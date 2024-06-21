@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "htcweatherclock",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "news": {
+      "0.2.0": {
+        "en": "Swiss Meteo API-Adapter integration\nSRF Meteo Icons for matching the api symbols",
+        "de": "Integration der Swiss Meteo API-Adapter\nSRF Meteo Icons zur Anpassung der api-Symbole",
+        "ru": "Интеграция Swiss Meteo API-Adapter\nSRF Метео Иконы для сопоставления символов api",
+        "pt": "Integração Suíça Meteo API-Adapter\nSRF Ícones Meteo para combinar os símbolos api",
+        "nl": "Zwitserse Meteo API-Adapter integratie\nSRF Meteo pictogrammen voor het aanpassen van de bijen symbolen",
+        "fr": "Intégration API-Adaptateur de Meteo Suisse\nSRF Meteo Icônes pour correspondre aux symboles api",
+        "it": "Integrazione Swiss Meteo API-Adapter\nSRF Icone meteo per abbinare i simboli api",
+        "es": "Integración Swiss Meteo API-Adapter\nSRF Meteo Iconos para combinar los símbolos api",
+        "pl": "Swiss Meteo API - Integracja adaptera\nSRF Meteo Icons do dopasowania symboli api",
+        "uk": "Swiss Meteo API-адаптер інтеграції\nСФР Метео Ікона для узгодження апі символів",
+        "zh-cn": "瑞士Meteo API-Adapter一体化\n战略成果框架 匹配 api 符号的元图标"
+      },
       "0.1.0": {
         "en": "(Christoph Suter) initial release",
         "de": "(Christoph Suter) erste Veröffentlichung",
